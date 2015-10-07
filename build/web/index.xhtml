@@ -1,0 +1,72 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <h:dataTable
+            var="student"
+            summary="Table of students"
+            value="#{administratorManager.allStudents}"
+            rules="all"
+            cellpadding="5">
+
+            <h:column>
+                <f:facet name="header">
+                    <h:outputText value="Username" />
+                </f:facet>
+                <h:outputText value="#{student.userName}" />
+                <!--<h:commandLink id="userName_link" action="lineItem">
+                    
+                    <f:setPropertyActionListener target="#{orderManager.currentOrder}" value="#{order.orderId}" /> 
+                </h:commandLink>-->
+            </h:column>
+
+            <h:column>
+                <f:facet name="header">
+                    <h:outputText value="Name" />
+                </f:facet>
+                <h:outputText value="#{student.name}" />
+            </h:column>
+            <h:column>
+                <f:facet name="header">
+                    <h:outputText value="Email" />
+                </f:facet>
+                <h:outputText value="#{student.email}" />
+            </h:column>
+            <h:column>
+                <f:facet name="header">
+                    <h:outputText value="Actions" />
+                </f:facet>
+                <h:form>
+                    <h:commandLink id="student_id_link" action="admin_student_details?faces_redirect=true">
+                    <h:outputText value="Details" />
+                    <f:setPropertyActionListener target="#{administratorManager.currentStudent}" value="#{student}" />
+                    </h:commandLink>
+                    &nbsp;
+                    <h:commandLink id="student_update_link" action="admin_students_update?faces_redirect=true">
+                    <h:outputText value="Update" />
+                    <f:setPropertyActionListener target="#{administratorManager.currentStudent}" value="#{student}" />
+                    </h:commandLink>
+                    &nbsp;
+                    <h:commandLink id="student_remove_link" action="index?faces_redirect=true">
+                    <h:outputText value="Remove" />
+                    <f:setPropertyActionListener target="#{administratorManager.currentStudent}" value="#{student}" />
+                    <f:param name="deleteStudentId" id="deleteStudentId" value="#{student.userName}" />
+                    </h:commandLink>
+                </h:form>
+            </h:column>
+            <h:column>
+                <h:form>
+                    
+                </h:form>
+            </h:column>
+        </h:dataTable>
+        <h:form>
+            <h:commandLink value="new student" action="admins_student_create?faces_redirect=true" />	
+        </h:form>
+    </h:body>
+</html>

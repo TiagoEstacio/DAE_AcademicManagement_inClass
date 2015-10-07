@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        
+        <h:form>
+           <h:panelGrid id="panel" columns="3" border="4" cellpadding="0" cellspacing="2">
+           <h:outputLabel for="userName" rendered="true" value="Username: " />
+           <h:inputText
+               id="userName"
+               value="#{administratorManager.userName}"
+               required="true" />
+           <h:message for ="userName"/>
+           
+           <h:outputLabel for="pass" rendered="true" value="Password: " />
+           <h:inputSecret id="pass" value="#{administratorManager.password}" required="true" />
+           <h:message for ="pass"/>
+           
+           <h:outputLabel for="name" rendered="true" value="Name: " />
+           <h:inputText id="name" value="#{administratorManager.name}" required="true" />
+           <h:message for ="name"/>
+           
+           <h:outputLabel for="email" rendered="true" value="Email: " />
+           <h:inputText 
+               id="email" 
+               value="#{administratorManager.email}" 
+               required="true">
+               <f:validateRegex pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]" />
+           </h:inputText>
+           <h:message for ="email"/>
+           
+           <h:commandButton value="Submit" action="#{administratorManager.createStudent}" />
+           </h:panelGrid>
+        </h:form>
+    </h:body>
+</html>
+
